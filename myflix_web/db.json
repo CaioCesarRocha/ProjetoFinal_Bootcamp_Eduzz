@@ -1,0 +1,72 @@
+{
+    
+    "movies": [
+        {   "id": 1, 
+            "title": "Homem-Aranha", 
+            "cast": "Tobey Maguire, Kirsten Dnust, Willem Dafoe",
+            "year": "2002",
+            "duration": "121 min",
+            "producer": "Sony Pictures Entertainment",
+            "genres": ["Fantasia", "Ficção Científica", "Drama"],
+            "avatar": "https://br.web.img2.acsta.net/c_310_420/pictures/bzp/01/29007.jpg",
+            "description": "https://www.adorocinema.com/filmes/filme-29007/",
+            "trailer": "https://www.youtube.com/watch?v=TYMMOjBUPMM"
+        },
+        {   "id": 2, 
+            "title": "O espetacular Homem-Aranha 2, A Ameaça de Electro", 
+            "cast": "Andrew Garfield, Emma Stone, Jamie Foxx",
+            "year": "2014",
+            "duration": "142 min",
+            "producer": "Marvel Entertainment",
+            "genres": ["Fantasia", "Ficção Científica"],
+            "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl2UtqCuyH_8xJ1fePhZ101K3ScH-6qY8oj_UAaOME6CPFyHW4",
+            "description": "https://www.adorocinema.com/filmes/filme-192186/",
+            "trailer": "https://www.youtube.com/watch?v=XH7tR6yae48"
+        },
+        {   "id": 3, 
+            "title": "Batman vs Superman: A Origem da Justiça", 
+            "cast": "Ben Affleck , Henry Cavill, Jesse Eisenberg",
+            "year": "2016",
+            "duration": "151 min",
+            "producer": "DC Entertainment",
+            "genres": ["Ação", "Drama"],
+            "avatar": "https://br.web.img3.acsta.net/c_310_420/pictures/18/01/04/18/43/2155615.jpg",
+            "description": "https://www.adorocinema.com/filmes/filme-219262/",
+            "trailer": "https://www.youtube.com/watch?v=IHDgrNxO-5I&t=6s"
+        },
+        {   "id": 4, 
+            "title": "Deadpool", 
+            "cast": "Ryan Reynolds, Morena Baccarin, Ed Skrein",
+            "year": "2016",
+            "duration": "108 min",
+            "producer": "Marvel Entertainment",
+            "genres": ["Comédia", "Fantasia"],
+            "avatar": "https://br.web.img2.acsta.net/c_310_420/pictures/16/01/28/19/55/412201.jpg",
+            "description": "https://www.adorocinema.com/filmes/filme-146349/",
+            "trailer": "https://www.youtube.com/watch?v=Q9X-bAE8KTc"
+        },
+        {   "id": 7, 
+            "title": "Karatê Kid", 
+            "cast": " Ralph Macchio, Pat Morita, Elisabeth Shue",
+            "year": "1984",
+            "duration": "126 min",
+            "producer": "Columbia Pictures",
+            "genres": ["Ação", "Drama", "Artes Marciais"],
+            "avatar": "https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/90/95/77/20122074.jpg",
+            "description": "https://www.adorocinema.com/filmes/filme-47352/",
+            "trailer": "https://www.youtube.com/watch?v=Zcd3BbKPmMI"
+        },
+        {   "id": 8, 
+            "title": "Venom: Tempo de Carnificina", 
+            "cast": "Tom Hardy, Woody Harrelson, Michelle Williams",
+            "year": "2021",
+            "duration": "97 min",
+            "producer": "Sony Pictures",
+            "genres": ["Comédia", "Ação", "Ficção Científica"],
+            "avatar": "https://br.web.img3.acsta.net/c_310_420/pictures/21/05/10/15/32/2425639.png",
+            "description": "https://www.adorocinema.com/filmes/filme-269758/trailer-19564675/",
+            "trailer": "https://www.youtube.com/watch?v=rrwBnlYOp4g"
+        }        
+    ]   
+      
+}
