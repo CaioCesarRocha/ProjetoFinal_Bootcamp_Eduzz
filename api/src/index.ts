@@ -1,9 +1,9 @@
 import express , { Request, Response, NextFunction} from 'express';
 const BodyParser = require('body-parser');
 import cors from 'cors';
-import routes from './routes';
 import moviesRoutes from './routes/movies.route';
 import genresRoutes from './routes/genres.route';
+import usersRoutes from './routes/users.route';
 import {errors} from 'celebrate';
 import errorHandler from './middlewares/error-handler.middleware';
 
@@ -16,7 +16,8 @@ app.use(express.json());
 
 //rotas da aplicação
 app.use(moviesRoutes);
-app.use(genresRoutes)
+app.use(genresRoutes);
+app.use(usersRoutes);
 
 
 //LIDAR COM ERRORS
