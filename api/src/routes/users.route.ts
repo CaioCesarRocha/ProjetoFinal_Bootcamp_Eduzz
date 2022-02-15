@@ -7,6 +7,7 @@ const userRoutes = express.Router();
 const userController = new UserController();
 
 
+userRoutes.get('/user', userController.login)
 
 userRoutes.post(
     '/user',

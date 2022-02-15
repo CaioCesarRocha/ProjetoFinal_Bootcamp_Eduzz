@@ -4,7 +4,6 @@ import DatabaseError from '../models/errors/database.error.model';
 
 import crypto from 'crypto'; //gerar um hash aleatorio de dados
 import { StatusCodes } from 'http-status-codes';
-import JWT from 'jsonwebtoken';
 
 
 const algorithm = 'aes-256-ctr';
@@ -14,11 +13,9 @@ let key = crypto.createHash('sha256').update(String(secret)).digest('base64').su
 let iv = crypto.randomBytes(16);
 
 
-
 class UserController {
 
-    async create (req: Request, res: Response){
-        
+    async create (req: Request, res: Response){      
         const {
             username,
             email,
@@ -27,17 +24,14 @@ class UserController {
 
         let password = req.body.password
 
-        console.log(algorithm)
-
         const cipher = crypto.createCipheriv(String(algorithm), key, iv);
         let encrypted = cipher.update(password);
         encrypted = Buffer.concat([encrypted, cipher.final()]);
         password = iv.toString('hex') + ':' + encrypted.toString('hex');
 
         const user = { username, email, password, admin}
-        console.log(user);
 
-        /*try{
+        try{
             const newUser = await knex('users').insert(user).returning('id');
             const userId = newUser[0].id;
             return res.json({
@@ -46,10 +40,46 @@ class UserController {
             });        
         }catch(error){
             throw new DatabaseError('Erro ao inserir o usuário', error);
-        }*/
+        }
     }
 
+
+    async login (req: Request, res: Response){
+        const {
+            email,
+            password
+        } = req.body;
+
+        try{                 
+            const user = await knex('users').where('email', email).first()
+
+            if(!user){
+                return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
+            }
     
+            let cryptoPassword = user.password;
+
+            let textParts = cryptoPassword.split(':');
+            let iv = Buffer.from(textParts.shift(), 'hex');
+            let encryptedText = Buffer.from(textParts.join(':'), 'hex');
+            let decipher = crypto.createDecipheriv(algorithm, key, iv);
+            let decrypted = decipher.update(encryptedText);
+            decrypted = Buffer.concat([decrypted, decipher.final()]);
+            cryptoPassword = decrypted.toString();
+
+            if(cryptoPassword === password){
+                const userLogged = {id: user.id, username: user.username, email: user.email, admin: user.admin}
+                return res.status(StatusCodes.OK).json(userLogged)
+            }
+            else{
+                return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
+            }  
+        } 
+        catch(error){
+            throw new DatabaseError('Erro ao buscar o usuário', error);
+        }
+    }
+
 }
 
 export default UserController;
