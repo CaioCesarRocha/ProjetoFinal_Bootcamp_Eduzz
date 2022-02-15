@@ -1,4 +1,7 @@
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -8,10 +11,10 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'movie',
-      user: 'postgres',
-      password: 'root',
-      port: 8080
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT
     },
     pool: {
       min: 2,

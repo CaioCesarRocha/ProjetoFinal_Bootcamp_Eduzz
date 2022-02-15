@@ -69,7 +69,7 @@ class UserController {
 
             if(cryptoPassword === password){
                 const userLogged = {id: user.id, username: user.username, email: user.email, admin: user.admin}
-                return res.status(StatusCodes.OK).json(userLogged)
+                return res.status(StatusCodes.OK).json(user)
             }
             else{
                 return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
