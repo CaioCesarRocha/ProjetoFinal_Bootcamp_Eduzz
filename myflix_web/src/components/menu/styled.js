@@ -13,7 +13,7 @@ export const WrapperHeader = styled.header`
 
 export const WrapperLogo = styled.a`
     img {
-        max-width: 60px;
+        max-width: 70px;
     }
    
 `;

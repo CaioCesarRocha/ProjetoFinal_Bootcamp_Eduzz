@@ -6,7 +6,7 @@ const Menu = () =>{
     return(
         <S.WrapperHeader>
             <S.WrapperLogo href="/">
-                    <img src={'https://blog.tudoprafoto.com/wp-content/uploads/2016/07/filmes.png'} alt={'Logo'}/>           
+                    <img src={'https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png'} alt={'Logo'}/>           
             </S.WrapperLogo>
 
             <S.WrapperOption href="/register-movie" rel="noreferrer" >  
