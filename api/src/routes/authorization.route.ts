@@ -16,7 +16,7 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
         const user = req.user;
 
         if (!user) {
-            return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
+            return res.status(StatusCodes.OK).json({wrongPass: true})
         }
 
         const jwtPayload = { username: user.username };

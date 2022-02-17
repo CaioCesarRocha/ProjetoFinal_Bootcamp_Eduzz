@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import knex from '../database/connection';
 import DatabaseError from '../models/errors/database.error.model';
+import ForbiddenError from "../models/errors/forbidden.error.model";
 
 import crypto from 'crypto'; //gerar um hash aleatorio de dados
-import { StatusCodes } from 'http-status-codes';
+//import { StatusCodes } from 'http-status-codes';
 
 
 const algorithm = 'aes-256-ctr';
@@ -18,11 +19,13 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
         password
     } = req.body;
 
+    console.log("BASIC AUTENTICATION", email, password)
+
     try{                 
         const user = await knex('users').where('email', email).first()
 
         if(!user){
-            return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
+            return res.json({wrongPass: true})
         }
 
         let cryptoPassword = user.password;
@@ -41,7 +44,7 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
             next();
         }
         else{
-            return res.status(StatusCodes.BAD_REQUEST).json({wrongPass: true})
+           return res.json({wrongPass: true})
         }  
     } 
     catch(error){

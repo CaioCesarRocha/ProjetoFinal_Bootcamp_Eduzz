@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { FiArrowRightCircle } from "react-icons/fi";
+import { useNavigate} from 'react-router-dom';
+//import { FiArrowRightCircle } from "react-icons/fi";
 
+import api from '../../services/api';
 import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
@@ -16,11 +18,24 @@ const schema = Yup.object().shape({
 
 
 const Login = () =>{
+    const [ wrongPass, setWrongPass] = useState(false);
 
     const initialValues = {email: '', password: ''};
 
+    const navigate =  useNavigate();
+
+
     async function handleSubmit(data){
-        
+        const dataUsers = [];
+        dataUsers.push({
+            email: data.email,
+            password: data.password
+        })
+
+        const dataUser = dataUsers[0];
+        const response = await api.post('token', dataUser);
+
+        return response
     }
 
     const formik  = useFormik({
@@ -33,13 +48,16 @@ const Login = () =>{
         onSubmit: async (data) => {       
             const response = await handleSubmit(data);
 
-            //formik.resetForm();
-            alert(`User ${data.email} logado`);
-            console.log("Olha ai a resposta:",response);
+            try{
+                setWrongPass(response.data.wrongPass)
+            }catch(error){
+                setWrongPass(false)
+                
+            }           
+            console.log("Olha ai a resposta:",response.data);
 
-            /*navigate.push({
-                pathname: '/',
-            })*/     
+            formik.resetForm();
+            navigate('/Home')        
         }
     })
 
@@ -59,7 +77,7 @@ const Login = () =>{
                         onChange={formik.handleChange}
                     />
                         {formik.errors.email && formik.touched.email &&(<S.WrapperErrorForms>{formik.errors.email}</S.WrapperErrorForms>)}
-
+                        
                     <FieldInput
                         nomeCampo={"Password"}
                         type={"password"}
@@ -71,6 +89,8 @@ const Login = () =>{
                         {formik.errors.password && formik.touched.password &&(<S.WrapperErrorForms>{formik.errors.password}</S.WrapperErrorForms>)}
                                             
                 </S.WrapperFieldset>
+
+                { wrongPass ? <S.WrapperErrorForms>Email ou Senha Incorretos!</S.WrapperErrorForms> : ''}
                 
                 <Button
                     text={'Entrar'}                 
