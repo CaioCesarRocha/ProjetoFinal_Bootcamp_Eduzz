@@ -48,16 +48,15 @@ const Login = () =>{
         onSubmit: async (data) => {       
             const response = await handleSubmit(data);
 
-            try{
-                setWrongPass(response.data.wrongPass)
-            }catch(error){
-                setWrongPass(false)
-                
-            }           
-            console.log("Olha ai a resposta:",response.data);
-
+            if(response.data.wrongPass === true){
+                setWrongPass(true)
+                return
+            }
+            
             formik.resetForm();
-            navigate('/Home')        
+            navigate('/Home')
+
+            console.log("Olha ai a resposta:",response.data);         
         }
     })
 
