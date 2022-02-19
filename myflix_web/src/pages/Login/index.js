@@ -9,7 +9,7 @@ import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import Button from '../../components/button';
-
+import useUser from '../../hooks/userHooks';
 
 const schema = Yup.object().shape({
     email: Yup.string().email().required('O campo Email é obrigatório'),
@@ -23,6 +23,8 @@ const Login = () =>{
     const initialValues = {email: '', password: ''};
 
     const navigate =  useNavigate();
+
+    const {setUsername} = useUser();
 
 
     async function handleSubmit(data){
@@ -38,6 +40,7 @@ const Login = () =>{
         return response
     }
 
+  
     const formik  = useFormik({
         initialValues: initialValues,
     
@@ -47,15 +50,17 @@ const Login = () =>{
 
         onSubmit: async (data) => {       
             const response = await handleSubmit(data);
-
+            
             if(response.data.wrongPass === true){
                 setWrongPass(true)
-                return
+                return;
             }
-            
+
+            const user = response.data.user
+            await setUsername(user)
+
             formik.resetForm();
             navigate('/Home')
-
             console.log("Olha ai a resposta:",response.data);         
         }
     })

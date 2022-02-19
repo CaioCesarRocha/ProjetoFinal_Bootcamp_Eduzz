@@ -38,7 +38,6 @@ const CreateUser = () => {
             password: data.password,
             admin: data.admin,
         })
-        console.log(dataUsers);
 
         const dataUser = dataUsers[0];
         const response = await api.post('user', dataUser);

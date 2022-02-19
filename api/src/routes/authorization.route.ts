@@ -24,7 +24,7 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
         const secretKey:string = process.env.SECRETKEY!; 
         const jwt = JWT.sign(jwtPayload, secretKey);
 
-        res.status(StatusCodes.OK).json({ token: jwt, wrongPass: false });
+        res.status(StatusCodes.OK).json({ token: jwt, wrongPass: false, user: user });
     } catch (error) {
         console.log('entrei error')
         next(error);

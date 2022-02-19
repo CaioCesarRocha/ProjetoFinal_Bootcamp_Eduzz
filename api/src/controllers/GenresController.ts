@@ -5,7 +5,7 @@ class GenreController {
 
     async index (req: Request, res: Response){
         const genres = await knex('genres').select('*');
-        console.log(genres)
+
         const serializedGenres = genres.map(item =>{
             return {
                 id: item.id,

@@ -7,6 +7,7 @@ import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import api from '../../services/api';
+import useUser from '../../hooks/userHooks';
 
 
 
@@ -26,17 +27,25 @@ const RegisterMovie = () => {
     const [ selectedGenre1, setSelectedGenre1] = useState('0');
     const [ selectedGenre2, setSelectedGenre2] = useState('0');
     const [ genres, setGenres] = useState([]);
+    const [username, setUsername] = useState('');
 
     const initialValues = { title: '', avatar: '', description: '', duration: '', year: '', cast: '', producer: '', trailer: '', genres: []};
-
-    //const genres = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Documentário', 'Fantasia', 'Ficção Científica','Romance', 'Suspense', 'Terror']
     
     const navigate =  useNavigate();
+    const {userState} = useUser();
+
 
     useEffect(() => {
         api.get('genres').then(response =>{
             setGenres(response.data)
         })
+        try{        
+            console.log(userState)           
+            setUsername(userState.username) 
+            console.log('userName', username);           
+        } catch{
+            navigate('/') 
+        }  
     }, []);
 
 
@@ -94,7 +103,7 @@ const RegisterMovie = () => {
 
     return(
         <S.WrapperContent id="register-movie">
-            <Menu/>
+            <Menu />
             <S.WrapperForm onSubmit={formik.handleSubmit}>
                 <h1>Dados do Filme</h1>
                 <fieldset> 

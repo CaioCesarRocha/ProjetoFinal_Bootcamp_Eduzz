@@ -9,6 +9,10 @@ export const WrapperHeader = styled.header`
   padding-left: 5px;
   align-items: center;
   margin: 0 auto;
+  h3 {
+      color: white;
+      font-weight: bold;
+  }
 `;
 
 export const WrapperLogo = styled.a`
@@ -50,4 +54,14 @@ export const WrapperTitle = styled.h1`
     font-size: 34px;
     text-align: center;
     font-weight: bold;
+`;
+
+
+export const WrapperContentUsername = styled.div`
+    display: flex;
+    flex: 1;
+    max-width: 17%;
+    justify-content: right;
+    text-align: center;
+    padding:12px;
 `;

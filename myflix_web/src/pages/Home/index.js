@@ -7,8 +7,9 @@ import useMovie from '../../hooks/movieHooks';
 
 
 const Home = () => {
+
     const {movieState} = useMovie();
-  
+ 
     return (
       <>
         <Menu/>
