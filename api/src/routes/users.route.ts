@@ -9,6 +9,7 @@ const userController = new UserController();
 
 userRoutes.get('/user', userController.login)
 
+
 userRoutes.post(
     '/user',
     celebrate({  //validação dos campos no back

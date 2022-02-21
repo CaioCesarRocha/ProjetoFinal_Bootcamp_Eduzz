@@ -1,12 +1,15 @@
 import express , { Request, Response, NextFunction} from 'express';
 const BodyParser = require('body-parser');
 import cors from 'cors';
+import {errors} from 'celebrate';
+import errorHandler from './middlewares/error-handler.middleware';
+
 import moviesRoutes from './routes/movies.route';
 import genresRoutes from './routes/genres.route';
 import usersRoutes from './routes/users.route';
+import userListMovieRoutes from './routes/userListMovie.route';
 import authorizationRoute from './routes/authorization.route';
-import {errors} from 'celebrate';
-import errorHandler from './middlewares/error-handler.middleware';
+
 
 const app = express();
 
@@ -19,6 +22,7 @@ app.use(express.json());
 app.use(moviesRoutes);
 app.use(genresRoutes);
 app.use(usersRoutes);
+app.use(userListMovieRoutes)
 app.use(authorizationRoute);
 
 
