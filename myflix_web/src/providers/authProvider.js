@@ -1,16 +1,18 @@
 import React, { createContext, useCallback, useState } from "react";
 //import api from "../services/api";
 
-export const UserContext = createContext({
+export const AuthContext = createContext({
     user:{},
 });
 
-const UserProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
+
+    const [ signed, setSigned] = useState(false);
+
     const [userState, setUserState] = useState({
         id: '',
         username: '',
     })
-
 
 
     const setUsername = (props) => {
@@ -19,12 +21,15 @@ const UserProvider = ({ children }) => {
            ...prevState,
            id: props.uuid,
            username: props.username
-        }));  
+        }));
+        
+        setSigned(true)
     }
 
 
 
     const contextValue = {
+        signed,
         userState, 
         setUsername: useCallback((user) => setUsername(user), []),    
         /*getMovie: useCallback((movieName) => getMovie(movieName), []),
@@ -35,13 +40,13 @@ const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={contextValue}>
+        <AuthContext.Provider value={contextValue}>
           {children}
-        </UserContext.Provider>
+        </AuthContext.Provider>
     );
 }
 
 
-export default UserProvider;
+export default AuthProvider;
 
   

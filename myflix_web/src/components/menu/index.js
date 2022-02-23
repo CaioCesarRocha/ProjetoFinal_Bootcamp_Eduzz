@@ -1,16 +1,15 @@
 import  {useState, useEffect} from 'react';
 import * as S from "./styled";
 import { MdQueuePlayNext } from "react-icons/md";
-import useUser from '../../hooks/userHooks';
+import useAuth from '../../hooks/authHooks';
 
 
 const Menu = () =>{
     const [username, setUsername] = useState('');
-    const {userState} = useUser();
+    const {userState} = useAuth();
 
     useEffect(() => {
-        try{         
-          console.log('USERMENU', userState)         
+        try{           
           setUsername(userState.username)            
         } catch{}       
     }, []);

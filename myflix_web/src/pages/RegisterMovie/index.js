@@ -7,7 +7,7 @@ import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import api from '../../services/api';
-import useUser from '../../hooks/userHooks';
+import useAuth from '../../hooks/authHooks';
 
 
 
@@ -32,7 +32,7 @@ const RegisterMovie = () => {
     const initialValues = { title: '', avatar: '', description: '', duration: '', year: '', cast: '', producer: '', trailer: '', genres: []};
     
     const navigate =  useNavigate();
-    const {userState} = useUser();
+    const {userState} = useAuth();
 
 
     useEffect(() => {

@@ -2,17 +2,17 @@ import React from "react";
 import App from "./App";
 import { ResetCSS } from "./global/resetCSS";
 import MovieProvider from "./providers/movieProvider";
-import UserProvider from "./providers/userProvider";
+import AuthProvider from "./providers/authProvider";
 
 const Providers = () => {
   return (
     <main>
-      <UserProvider>
+      <AuthProvider>
         <MovieProvider>
           <ResetCSS />
           <App />
         </MovieProvider>
-      </UserProvider>
+      </AuthProvider>
     </main>
   );
 };

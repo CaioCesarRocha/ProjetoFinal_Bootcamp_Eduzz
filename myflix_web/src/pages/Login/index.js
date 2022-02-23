@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useNavigate} from 'react-router-dom';
-//import { FiArrowRightCircle } from "react-icons/fi";
+import { FiArrowRightCircle } from "react-icons/fi";
 
 import api from '../../services/api';
 import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import Button from '../../components/button';
-import useUser from '../../hooks/userHooks';
+import useAuth from '../../hooks/authHooks';
 
 const schema = Yup.object().shape({
     email: Yup.string().email().required('O campo Email é obrigatório'),
@@ -24,7 +24,7 @@ const Login = () =>{
 
     const navigate =  useNavigate();
 
-    const {setUsername} = useUser();
+    const {setUsername} = useAuth();
 
 
     async function handleSubmit(data){
@@ -97,9 +97,11 @@ const Login = () =>{
                 { wrongPass ? <S.WrapperErrorForms>Email ou Senha Incorretos!</S.WrapperErrorForms> : ''}
                 
                 <Button
-                    text={'Entrar'}                 
-                />
-            </S.WrapperForm>                           
+                    text={'Entrar'}             
+                />     
+            </S.WrapperForm>    
+
+                              
         </S.WrapperContent>
     );
 }

@@ -38,7 +38,7 @@ const MovieProvider = ({ children }) => {
 
         api.get(`movie/${movieName}`)
         .then(( {data} ) => {
-          console.log(data)
+          //console.log(data)
           if(data.length !== 0){
             const dataMovie = data.movie[0];
             const dataGenres = [data.genres[0], data.genres[1]]
@@ -71,11 +71,12 @@ const MovieProvider = ({ children }) => {
     }
 
     const addList = (props) => {
-     setMovieState((prevState)=> ({
+      console.log('chegando no add', props)
+     /*setMovieState((prevState)=> ({
         ...prevState,
         hasUser: true,
         myList: [...props.myList, props.movie]
-      }));  
+      }));*/  
     }
 
     const removeList = (myList, idMovie) => {
@@ -98,7 +99,7 @@ const MovieProvider = ({ children }) => {
      
     const getRelated = (movie) =>{
       let relateds = []
-      console.log(movie.movie)
+      //console.log(movie.movie)
       api.get(`genres/${movie.movie.genres[1].id}`)
       .then(( {data} ) => {   
         data.map(item => {

@@ -1,12 +1,13 @@
 import React from 'react';
-//import * as S from './styled';
+import * as S from './styled';
 
 const Button = ({text}) => {
     return(
-        <button type='submit' style={{fontSize: 23}}>          
-            {text}
-            
-        </button>
+        <S.WrapperContentButton>
+            <button type='submit' style={{fontSize: 23, justifyContent: 'space-between'}}>          
+                {text}                         
+            </button>
+        </S.WrapperContentButton>
     )
 }
 
