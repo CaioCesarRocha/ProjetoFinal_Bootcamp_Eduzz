@@ -30,7 +30,7 @@ export const WrapperOption = styled.a`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 12px;
+    padding: 5px;
     h1 {
         font-size: 14px;
     }
@@ -65,3 +65,7 @@ export const WrapperContentUsername = styled.div`
     text-align: center;
     padding:12px;
 `;
+
+export const WrapperLogout = styled.button`
+`
+

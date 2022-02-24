@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/authProvider";
 
 const useAuth = () =>{
-    const { signed, userState, setUsername } = useContext(
+    const {   userState, setUsername } = useContext(
         AuthContext
     );
 
-    return { signed, userState, setUsername};
+    return {  userState, setUsername};
 }
 
 export default useAuth;

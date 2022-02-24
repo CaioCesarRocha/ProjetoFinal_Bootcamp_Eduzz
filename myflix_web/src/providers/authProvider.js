@@ -7,29 +7,24 @@ export const AuthContext = createContext({
 
 const AuthProvider = ({ children }) => {
 
-    const [ signed, setSigned] = useState(false);
 
     const [userState, setUserState] = useState({
         id: '',
         username: '',
     })
 
-
     const setUsername = (props) => {
-
+        console.log('PROPSSS', props)
         setUserState((prevState)=> ({
            ...prevState,
            id: props.uuid,
            username: props.username
         }));
-        
-        setSigned(true)
     }
 
 
 
     const contextValue = {
-        signed,
         userState, 
         setUsername: useCallback((user) => setUsername(user), []),    
         /*getMovie: useCallback((movieName) => getMovie(movieName), []),

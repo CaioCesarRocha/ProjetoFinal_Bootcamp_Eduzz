@@ -71,7 +71,7 @@ const CreateUser = () => {
 
     return (
         <S.WrapperContent>
-            <Menu/>
+            <Menu />
             <S.WrapperForm onSubmit={formik.handleSubmit}>
                 <h1> Cadastro de Usuário </h1>
                 <S.WrapperFieldset>

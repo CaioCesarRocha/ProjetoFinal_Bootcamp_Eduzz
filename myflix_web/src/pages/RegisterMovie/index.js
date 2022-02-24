@@ -34,7 +34,7 @@ const RegisterMovie = () => {
     const navigate =  useNavigate();
     const {userState} = useAuth();
 
-
+    //pega os genres no banco e o nome do usuario
     useEffect(() => {
         api.get('genres').then(response =>{
             setGenres(response.data)
@@ -47,6 +47,15 @@ const RegisterMovie = () => {
             navigate('/') 
         }  
     }, []);
+
+    useEffect(() =>{    
+        const signed = sessionStorage.getItem('signed');
+  
+        if(signed === 'false'){
+          navigate('/')
+          return
+        }
+      }, [])
 
 
     function handleSelectGenre1(event){

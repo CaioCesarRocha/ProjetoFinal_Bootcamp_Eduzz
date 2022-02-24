@@ -1,27 +1,36 @@
 import  {useState, useEffect} from 'react';
 import * as S from "./styled";
-import { MdQueuePlayNext } from "react-icons/md";
-import useAuth from '../../hooks/authHooks';
+import { MdQueuePlayNext , MdLogout} from "react-icons/md";
 
 
 const Menu = () =>{
     const [username, setUsername] = useState('');
-    const {userState} = useAuth();
+    const [signed, setSigned] = useState(false);
 
     useEffect(() => {
-        try{           
-          setUsername(userState.username)            
-        } catch{}       
+
+        setSigned(false) 
+        try{
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            setUsername(user.username)
+            const signed = sessionStorage.getItem('signed');
+            setSigned(signed);            
+        }catch(error){console.log(error)}                     
     }, []);
 
+    function logout(){
+        sessionStorage.setItem('user', {});
+        sessionStorage.setItem('signed', false);
+    }
     
     return(
+        
         <S.WrapperHeader>
             <S.WrapperLogo href="/">
                     <img src={'https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png'} alt={'Logo'}/>           
             </S.WrapperLogo>
 
-            <S.WrapperOption href="/register-movie" rel="noreferrer">  
+            <S.WrapperOption href="/register-movie" rel="noreferrer" >  
                 <MdQueuePlayNext/>              
                 <h1>Register Movie</h1>                
             </S.WrapperOption>
@@ -31,8 +40,18 @@ const Menu = () =>{
             <S.WrapperContentUsername>
                 <h3>{username}</h3>  
             </S.WrapperContentUsername>
-                   
-        </S.WrapperHeader>
+
+            {
+            signed ?
+                <button onClick={() => logout()}>
+                    <S.WrapperOption href="/" rel="noreferrer" >  
+                        <MdLogout/>         
+                    </S.WrapperOption>         
+                </button>
+            :
+                ''
+            }              
+        </S.WrapperHeader>      
     )
 } 
 

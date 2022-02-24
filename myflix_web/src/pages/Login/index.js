@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useNavigate} from 'react-router-dom';
-import { FiArrowRightCircle } from "react-icons/fi";
+//import { FiArrowRightCircle } from "react-icons/fi";
 
 import api from '../../services/api';
 import * as S from './styled';
@@ -25,6 +25,8 @@ const Login = () =>{
     const navigate =  useNavigate();
 
     const {setUsername} = useAuth();
+
+
 
 
     async function handleSubmit(data){
@@ -59,8 +61,11 @@ const Login = () =>{
             const user = response.data.user
             await setUsername(user)
 
+            sessionStorage.setItem('user', JSON.stringify(user));
+            sessionStorage.setItem('signed', true);        
+
             formik.resetForm();
-            navigate('/Home')
+            navigate('/home')
             console.log("Olha ai a resposta:",response.data);         
         }
     })
@@ -68,7 +73,7 @@ const Login = () =>{
 
     return (
         <S.WrapperContent>          
-            <Menu/>                    
+            <Menu />                    
             <S.WrapperForm onSubmit={formik.handleSubmit}>
                 <h1>Login</h1>
                 <S.WrapperFieldset>
