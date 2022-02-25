@@ -33,7 +33,7 @@ const Sections = () => {
 
 
     const addMovie = (item, movieState) => {      
-        //let newMovieList = {myList: [...movieState.myList], movie: {...item}}
+        let newList = {myList: [...movieState.myList], movie: {...item}}
         const user = JSON.parse(sessionStorage.getItem('user'))
 
         let newMovieList = {
@@ -41,7 +41,7 @@ const Sections = () => {
           movie_id: item.id       
         }
         
-        const response = addList(newMovieList)
+        const response = addList(newMovieList, newList)
 
         if(response === 'success'){
             Swal.fire({

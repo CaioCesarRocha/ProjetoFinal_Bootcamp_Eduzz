@@ -70,20 +70,21 @@ const MovieProvider = ({ children }) => {
         });       
     }
 
-    const addList = (props) => {
-      let newMovie = {...props}
+    const addList = (newMovieList, newList) => {
+      let newMovie = {...newMovieList}
       try{
         api.post('userListMovie', newMovie);
+        setMovieState((prevState)=> ({
+          ...prevState,
+          hasUser: true,
+          myList: [...newList.myList, newList.movie]
+        }));  
         return('success')
       }catch(error){
         return('failed')
       }
    
-     /*setMovieState((prevState)=> ({
-        ...prevState,
-        hasUser: true,
-        myList: [...props.myList, props.movie]
-      }));*/  
+    
     }
 
     const removeList = (myList, idMovie) => {
@@ -103,6 +104,21 @@ const MovieProvider = ({ children }) => {
           }));
       }})
     }
+
+    const getMyList = (user_id) =>{
+      try{
+        api.get(`userListMovie/${user_id}`).then(({data}) =>{
+          setMovieState((prevState) => ({
+            ...prevState,
+            myList: [...data]
+          }));
+        });
+        //return('success')
+      }catch(error){
+        return('failed')
+      }
+    }
+
      
     const getRelated = (movie) =>{
       let relateds = []
@@ -125,8 +141,9 @@ const MovieProvider = ({ children }) => {
     const contextValue = {
         movieState,     
         getMovie: useCallback((movieName) => getMovie(movieName), []),
-        addList: useCallback((movie) => addList(movie), []),
+        addList: useCallback((newMovieList, newList) => addList(newMovieList, newList), []),
         removeList: useCallback((myList, idMovie) => removeList(myList, idMovie), []),
+        getMyList: useCallback((user_id) => getMyList(user_id), []),
         getRelated: useCallback((movie) => getRelated(movie), []),
     };
 

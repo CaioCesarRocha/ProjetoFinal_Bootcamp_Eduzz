@@ -8,7 +8,7 @@ const userListMovieController = new UserListMovieController();
 
 userListMovieRoutes.post('/userListMovie', userListMovieController.create);
 
-userListMovieRoutes.get('/userListMovie', userListMovieController.show);
+userListMovieRoutes.get('/userListMovie/:user_id', userListMovieController.show);
 
 
 
