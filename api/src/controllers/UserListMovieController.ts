@@ -11,7 +11,7 @@ class UserListMovieController {
         } = req.body
 
         const userList = { user_id, movie_id} 
-
+        console.log(userList)
         try{
             await knex('user_myListMovie').insert(userList);
             return res.status(200).json('Success');

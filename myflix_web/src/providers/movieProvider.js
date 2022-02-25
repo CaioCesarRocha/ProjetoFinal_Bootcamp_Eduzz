@@ -71,7 +71,14 @@ const MovieProvider = ({ children }) => {
     }
 
     const addList = (props) => {
-      console.log('chegando no add', props)
+      let newMovie = {...props}
+      try{
+        api.post('userListMovie', newMovie);
+        return('success')
+      }catch(error){
+        return('failed')
+      }
+   
      /*setMovieState((prevState)=> ({
         ...prevState,
         hasUser: true,

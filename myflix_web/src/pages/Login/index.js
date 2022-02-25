@@ -28,7 +28,6 @@ const Login = () =>{
 
 
 
-
     async function handleSubmit(data){
         const dataUsers = [];
         dataUsers.push({
@@ -66,7 +65,7 @@ const Login = () =>{
 
             formik.resetForm();
             navigate('/home')
-            console.log("Olha ai a resposta:",response.data);         
+            //console.log("Olha ai a resposta:",response.data);         
         }
     })
 

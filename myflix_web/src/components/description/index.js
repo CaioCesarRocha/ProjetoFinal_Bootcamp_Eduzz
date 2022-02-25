@@ -23,14 +23,25 @@ const Description = () => {
     }
 
     const add = (props) =>{ //adicionar o id na lista
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: `Filme ${props.movie.title} adicionado a lista.`,
-        showConfirmButton: false,
-        timer: 2500
-      })
-      return addList(props)
+        //let newMovieList = {myList: [...movieState.myList], movie: {...item}}
+        const user = JSON.parse(sessionStorage.getItem('user'))
+
+        let newMovieList = {
+          user_id:  user.uuid,
+          movie_id: props.movie.id       
+        }
+        
+        const response = addList(newMovieList)
+
+        if(response === 'success'){
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `Filme ${props.movie.title} adicionado a lista.`,
+              showConfirmButton: false,
+              timer: 2500
+            })
+        } 
     }
   
     return (

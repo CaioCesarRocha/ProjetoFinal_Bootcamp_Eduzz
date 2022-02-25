@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SectionItem from '../sectionsItems';
 import useMovie from '../../hooks/movieHooks';
-import useAuth from '../../hooks/authHooks';
 import * as S from "./styled";
 
 import { FiPlusCircle , FiXCircle} from 'react-icons/fi';
@@ -11,17 +10,11 @@ import Swal from "sweetalert2";
 
 const Sections = () => {
     const { movieState, removeList, addList, getRelated, getMovie } = useMovie();
-    const {userState} = useAuth();
     const [username, setUsername] = useState('');
     const [hasUserForSearchsection, setHasUserForSearchsection] = useState(true);
     const [hasMyList, setHasMyList] = useState(false);
 
 
-    useEffect(() =>{
-      console.log('userState SECTION', userState);
-      setUsername(userState.username);
-      console.log('USERNAME SECTION', username || null); 
-    }, []);
 
     useEffect(() =>{              
       const getMoviesRelated = async () => {
@@ -39,18 +32,26 @@ const Sections = () => {
     }, [movieState.myList]);
 
 
-    const addMovie = (item, movieState) => { 
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: `Filme ${item.title} adicionado a lista.`,
-        showConfirmButton: false,
-        timer: 2500
-      }) 
-      console.log('item', item)
-      let newMovieList = {myList: [...movieState.myList], movie: {...item}}
-      
-      return addList(newMovieList)
+    const addMovie = (item, movieState) => {      
+        //let newMovieList = {myList: [...movieState.myList], movie: {...item}}
+        const user = JSON.parse(sessionStorage.getItem('user'))
+
+        let newMovieList = {
+          user_id:  user.uuid,
+          movie_id: item.id       
+        }
+        
+        const response = addList(newMovieList)
+
+        if(response === 'success'){
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `Filme ${item.title} adicionado a lista.`,
+              showConfirmButton: false,
+              timer: 2500
+            }) 
+        }       
     }
 
     const removeMovie = (movieState, id) => {    
@@ -122,7 +123,7 @@ const Sections = () => {
             <><span>ninguem aqui</span></>
           )}
         </>
-      );
+    );
 }
 
 export default Sections;

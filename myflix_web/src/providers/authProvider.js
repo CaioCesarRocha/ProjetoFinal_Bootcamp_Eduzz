@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
     })
 
     const setUsername = (props) => {
-        console.log('PROPSSS', props)
         setUserState((prevState)=> ({
            ...prevState,
            id: props.uuid,
