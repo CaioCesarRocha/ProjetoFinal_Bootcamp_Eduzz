@@ -87,22 +87,31 @@ const MovieProvider = ({ children }) => {
     
     }
 
-    const removeList = (myList, idMovie) => {
-      setMovieState((prevState) => ({
-        ...prevState,
-        myList: []
-      }));
+    const removeList = (myList, deleteMovie) => {
+      const user_id = deleteMovie.user_id;
+      const movie_id = deleteMovie.movie_id;
 
-      let newList = [];
+      try{
+        api.delete(`userListMovie/${user_id}/${movie_id}`);
+        setMovieState((prevState) => ({
+          ...prevState,
+          myList: []
+        }));
 
-      myList.map((item) => {
-        if(idMovie !== item.id){
-          newList.push(item)            
-          setMovieState((prevState) => ({
-            ...prevState,
-            myList: [...newList]
-          }));
-      }})
+        let newList = [];
+
+        myList.map((item) => {
+          if(movie_id !== item.id){
+            newList.push(item)            
+            setMovieState((prevState) => ({
+              ...prevState,
+              myList: [...newList]
+            }));
+          }
+        })
+      }catch(error){
+        return('failed')
+      }     
     }
 
     const getMyList = (user_id) =>{
@@ -142,7 +151,7 @@ const MovieProvider = ({ children }) => {
         movieState,     
         getMovie: useCallback((movieName) => getMovie(movieName), []),
         addList: useCallback((newMovieList, newList) => addList(newMovieList, newList), []),
-        removeList: useCallback((myList, idMovie) => removeList(myList, idMovie), []),
+        removeList: useCallback((myList, deleteMovie) => removeList(myList, deleteMovie), []),
         getMyList: useCallback((user_id) => getMyList(user_id), []),
         getRelated: useCallback((movie) => getRelated(movie), []),
     };

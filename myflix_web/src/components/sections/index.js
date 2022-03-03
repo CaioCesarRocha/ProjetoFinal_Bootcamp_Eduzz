@@ -54,8 +54,15 @@ const Sections = () => {
         }       
     }
 
-    const removeMovie = (movieState, id) => {    
-      return removeList(movieState.myList, id);
+    const removeMovie = (movieState, id) => { 
+      const user = JSON.parse(sessionStorage.getItem('user'))
+      
+      let deleteMovie = {
+        user_id:  user.uuid,
+        movie_id: id       
+      }
+       
+      return removeList(movieState.myList, deleteMovie);
     }
 
     const getInfo  = (title) =>{
