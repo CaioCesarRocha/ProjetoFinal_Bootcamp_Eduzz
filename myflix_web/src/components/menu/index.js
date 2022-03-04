@@ -6,13 +6,15 @@ import { MdQueuePlayNext , MdLogout} from "react-icons/md";
 const Menu = () =>{
     const [username, setUsername] = useState('');
     const [signed, setSigned] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
 
         setSigned(false) 
         try{
             const user = JSON.parse(sessionStorage.getItem('user'));
-            setUsername(user.username)
+            setUsername(user.username);
+            setAdmin(user.admin);
             const signed = sessionStorage.getItem('signed');
             setSigned(signed);            
         }catch(error){console.log(error)}                     
@@ -29,11 +31,16 @@ const Menu = () =>{
             <S.WrapperLogo href="/">
                     <img src={'https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png'} alt={'Logo'}/>           
             </S.WrapperLogo>
-
-            <S.WrapperOption href="/register-movie" rel="noreferrer" >  
-                <MdQueuePlayNext/>              
-                <h1>Register Movie</h1>                
-            </S.WrapperOption>
+            { admin 
+            ?
+                <S.WrapperOption href="/register-movie" rel="noreferrer" >  
+                    <MdQueuePlayNext/>              
+                    <h1>Register Movie</h1>                
+                </S.WrapperOption>           
+            :
+                ''
+            }
+            
             <S.WrapperContentTitle>
                 <S.WrapperTitle>MYFLIX</S.WrapperTitle>
             </S.WrapperContentTitle>
