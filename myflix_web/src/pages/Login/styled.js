@@ -58,3 +58,14 @@ export const WrapperErrorForms = styled.div`
     font-size: 15px;
     font-weight: bold;
 `
+
+export const WrapperRegister = styled.div`
+    color: #380101;
+    font-size: 12px;
+    a {
+        font-weight: bold;
+        &: hover{
+            color: #fff;
+        }
+    }
+`

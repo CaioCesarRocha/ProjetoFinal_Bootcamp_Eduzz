@@ -102,6 +102,13 @@ const Login = () =>{
                 </S.WrapperFieldset>
 
                 { wrongPass ? <S.WrapperErrorForms>Email ou Senha Incorretos!</S.WrapperErrorForms> : ''}
+
+                <S.WrapperRegister>
+                    Ainda não possui conta? 
+                    <a href="/create-user" rel='noreferrer'>
+                        <b> Cadastre aqui.</b>
+                    </a>
+                </S.WrapperRegister>
                 
                 <Button
                     text={'Entrar'}             
