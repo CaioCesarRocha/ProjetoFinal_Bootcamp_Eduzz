@@ -45,8 +45,9 @@ const Menu = () =>{
                 <S.WrapperTitle>MYFLIX</S.WrapperTitle>
             </S.WrapperContentTitle>
             <S.WrapperContentUsername>
-                <h3>{username}</h3>  
-            </S.WrapperContentUsername>
+                <h3>{username}</h3> 
+            </S.WrapperContentUsername>   
+            
 
             {
             signed ?
@@ -57,7 +58,8 @@ const Menu = () =>{
                 </button>
             :
                 ''
-            }              
+            } 
+                       
         </S.WrapperHeader>      
     )
 } 

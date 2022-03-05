@@ -45,11 +45,11 @@ const Description = () => {
     }
   
     return (
-      <>
-        <S.Wrapper>
+      <S.Wrapper>
+        <S.WrapperContent>
           <S.WrapperImage src={movieState.movie.avatar} alt="Avatar of movie" />
           <S.WrapperInfoMovie>
-            <div>
+            
               <S.WrapperTitle
                   href={movieState.movie.description}
                   target="_blank"
@@ -78,7 +78,7 @@ const Description = () => {
                 <h3>Genres:</h3>
                   <span>{movieState.movie.genres[0].name}, {movieState.movie.genres[1].name} </span> 
               </S.WrapperMovieGeneric>   
-            </div>         
+                   
           </S.WrapperInfoMovie>
 
           <S.WrapperContainerOptions>
@@ -98,14 +98,14 @@ const Description = () => {
             </S.WrapperOptions> 
           </S.WrapperContainerOptions>
         
-        </S.Wrapper>
+        </S.WrapperContent>
         {hasTrailer ? 
             <ShowTrailer url={trailerURL} onClick={() => {setHasTrailer(false)}}  />
           :
             <span></span>
         }
       
-      </>
+      </S.Wrapper>
     );
   };
   

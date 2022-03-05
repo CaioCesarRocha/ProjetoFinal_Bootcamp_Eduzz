@@ -1,21 +1,30 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-center;
-  flex-direction: row;
-  background-color: #751aff;
+  margin: 0; 
   width: 100%;
+`
+
+export const WrapperContent = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  flex: 1;
+
+  @media(max-width: 800px) {
+    flex-direction: column;
+    margin-top: 15px;
+  }
 `;
 
 export const WrapperInfoMovie = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ccc;
   align-items: flex-center;
   justify-content: space-between;
   margin-left: 8px;
-  padding-top: 15px;
+  padding: 15px;
+ 
 
   h1 {
     font-size: 32px;
@@ -64,13 +73,19 @@ export const WrapperMovieGeneric = styled.div`
 
 export const WrapperImage = styled.img`
   border-radius: 10%;
-  width: 200px;
+  width: 230px;
   height: 220px;
   margin: 8px;
+
+  @media(max-width: 800px) {
+    justify-content: center;
+    margin: 0 auto;
+    width: 200px;
+    height: 180px;
+  }
 `;
 
 export const WrapperContainerOptions = styled.div`
-  background-color: red;
   display: flex;
   margin: auto 0;
   max-width: 100%;
@@ -89,11 +104,18 @@ export const WrapperOptions = styled.div`
   text {
     margin-top: 15px;
   }
+
+  @media(max-width: 800px) {
+    font-size: 18px;
+  }
+
+  @media(max-width: 350px) {
+    font-size: 14px;
+  }
 `
 
 export const WrapperButton = styled.button`
   font-size: 80px;
-  color: #a11326;
   display: flex;
   flex-direction: row;
   &:hover {
@@ -101,5 +123,13 @@ export const WrapperButton = styled.button`
   }
   span{
     font-size: 30px;
+  }
+
+  @media(max-width: 800px) {
+    font-size: 60px;
+  }
+
+  @media(max-width: 350px) {
+    font-size: 40px;
   }
 `

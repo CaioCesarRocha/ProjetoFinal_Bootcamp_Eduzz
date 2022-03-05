@@ -17,9 +17,17 @@ export const WrapperHeader = styled.header`
 
 export const WrapperLogo = styled.a`
     img {
-        max-width: 70px;
+        max-width: 100%;
+        width: 75px;
+    } 
+
+    @media(max-width: 800px) {
+        width: 55px;
     }
-   
+
+    @media(max-width: 350px) {
+        width: 45px;
+    }
 `;
 
 
@@ -38,6 +46,21 @@ export const WrapperOption = styled.a`
         color: #f79292;
         box-shadow: #000;
     }
+
+    
+    @media(max-width: 800px) {
+        font-size: 24px;
+        h1 {
+            font-size: 12px;
+        }
+    } 
+    
+    @media(max-width: 350px) {
+        font-size: 18px;
+        h1 {
+            font-size: 8px;
+        }
+    } 
 `
 
 export const WrapperContentTitle = styled.div`
@@ -47,6 +70,10 @@ export const WrapperContentTitle = styled.div`
     justify-content: center;
     text-align: center;
     padding:12px;
+    
+    @media(max-width: 800px) {
+        
+    }
 `;
 
 
@@ -54,6 +81,14 @@ export const WrapperTitle = styled.h1`
     font-size: 34px;
     text-align: center;
     font-weight: bold;
+
+    @media(max-width: 800px) {
+        font-size: 25px;
+    }
+    
+    @media(max-width: 350px) {
+        font-size: 17px;
+    } 
 `;
 
 
@@ -63,9 +98,21 @@ export const WrapperContentUsername = styled.div`
     max-width: 17%;
     justify-content: right;
     text-align: center;
-    padding:12px;
+    padding: 8px;
+
+    @media(max-width: 800px) {
+        padding: 0px;
+        h3 {
+            font-size: 12px;          
+        }       
+    } 
+
+    @media(max-width: 350px) {
+        padding: 0px;
+        h3 {
+            font-size: 8px;          
+        }       
+    } 
 `;
 
-export const WrapperLogout = styled.button`
-`
 
