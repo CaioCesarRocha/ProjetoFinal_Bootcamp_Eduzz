@@ -37,6 +37,7 @@ export const WrapperOption = styled.a`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
     padding: 5px;
     h1 {
@@ -65,15 +66,11 @@ export const WrapperOption = styled.a`
 
 export const WrapperContentTitle = styled.div`
     display: flex;
-    flex: 1;
     width: 100%;
     justify-content: center;
     text-align: center;
     padding:12px;
     
-    @media(max-width: 800px) {
-        
-    }
 `;
 
 
@@ -94,7 +91,6 @@ export const WrapperTitle = styled.h1`
 
 export const WrapperContentUsername = styled.div`
     display: flex;
-    flex: 1;
     max-width: 17%;
     justify-content: right;
     text-align: center;

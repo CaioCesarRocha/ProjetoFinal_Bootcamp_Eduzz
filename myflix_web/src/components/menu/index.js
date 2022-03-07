@@ -28,7 +28,7 @@ const Menu = () =>{
     return(
         
         <S.WrapperHeader>
-            <S.WrapperLogo href="/">
+            <S.WrapperLogo href="/home">
                     <img src={'https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png'} alt={'Logo'}/>           
             </S.WrapperLogo>
             { admin 
@@ -44,18 +44,21 @@ const Menu = () =>{
             <S.WrapperContentTitle>
                 <S.WrapperTitle>MYFLIX</S.WrapperTitle>
             </S.WrapperContentTitle>
-            <S.WrapperContentUsername>
-                <h3>{username}</h3> 
-            </S.WrapperContentUsername>   
-            
+
+                      
 
             {
             signed ?
-                <button onClick={() => logout()}>
-                    <S.WrapperOption href="/" rel="noreferrer" >  
-                        <MdLogout/>         
-                    </S.WrapperOption>         
-                </button>
+                <>
+                    <S.WrapperContentUsername>
+                        <h3>{username}</h3> 
+                    </S.WrapperContentUsername>   
+                    <button onClick={() => logout()}>
+                        <S.WrapperOption href="/" rel="noreferrer" >  
+                            <MdLogout/>         
+                        </S.WrapperOption>         
+                    </button>
+                </>
             :
                 ''
             } 
