@@ -19,7 +19,10 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
             return res.status(StatusCodes.OK).json({wrongPass: true})
         }
 
-        const jwtPayload = { username: user.username };
+        var currentDate = new Date().getTime();
+        currentDate = currentDate + 60;
+
+        const jwtPayload = { username: user.username, exp: currentDate };
         //o sinal ! diz ao TypeScript que, embora pareça ser nulo, ele pode confiar em você que não é.
         const secretKey:string = process.env.SECRETKEY!; 
         const jwt = JWT.sign(jwtPayload, secretKey);

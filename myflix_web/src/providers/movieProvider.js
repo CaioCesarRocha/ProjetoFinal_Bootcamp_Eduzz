@@ -70,10 +70,15 @@ const MovieProvider = ({ children }) => {
         });       
     }
 
-    const addList = (newMovieList, newList) => {
+    const addList = (newMovieList, newList, token) => {
       let newMovie = {...newMovieList}
+      
+      const config = { headers: { authorization: `Bearer ${token}` } };
+
+      console.log(config)
+
       try{
-        api.post('userListMovie', newMovie);
+        api.post('userListMovie', newMovie, config);
         setMovieState((prevState)=> ({
           ...prevState,
           hasUser: true,
@@ -150,8 +155,8 @@ const MovieProvider = ({ children }) => {
     const contextValue = {
         movieState,     
         getMovie: useCallback((movieName) => getMovie(movieName), []),
-        addList: useCallback((newMovieList, newList) => addList(newMovieList, newList), []),
-        removeList: useCallback((myList, deleteMovie) => removeList(myList, deleteMovie), []),
+        addList: useCallback((newMovieList, newList, token) => addList(newMovieList, newList, token), []),
+        removeList: useCallback((myList, deleteMovie, token) => removeList(myList, deleteMovie, token), []),
         getMyList: useCallback((user_id) => getMyList(user_id), []),
         getRelated: useCallback((movie) => getRelated(movie), []),
     };

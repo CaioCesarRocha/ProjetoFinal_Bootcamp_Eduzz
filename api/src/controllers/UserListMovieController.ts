@@ -5,7 +5,7 @@ import DatabaseError from '../models/errors/database.error.model';
 class UserListMovieController {
 
     async create (req: Request, res: Response){  
-        const {
+        /*const {
             user_id,
             movie_id,
         } = req.body
@@ -17,8 +17,8 @@ class UserListMovieController {
             return res.status(200).json('Success');
 
         }catch(error){
-            throw new DatabaseError('Erro ao inserir o usuário', error);
-        }
+            throw new DatabaseError('Erro ao inserir o filme do usuário', error);
+        }*/
     }
 
     async show (req: Request, res: Response){ 
@@ -46,7 +46,7 @@ class UserListMovieController {
             .andWhere('movie_id', movie_id)
             .del()
         }catch(error){
-            throw new DatabaseError('Erro ao deletar usuário', error);
+            throw new DatabaseError('Erro ao deletar filme do usuário', error);
         }
     }
 

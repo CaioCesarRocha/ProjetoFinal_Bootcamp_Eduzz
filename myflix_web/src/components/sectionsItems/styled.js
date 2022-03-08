@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 
 export const WrapperImage = styled.img`
   width: 110px;
+  border-radius: 20px;
 `
 
 export const WrapperContentInfos = styled.div`

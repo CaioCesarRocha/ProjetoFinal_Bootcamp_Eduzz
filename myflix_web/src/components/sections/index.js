@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 
 const Sections = () => {
     const { movieState, removeList, addList, getRelated, getMovie } = useMovie();
-    const [username, setUsername] = useState('');
     const [hasUserForSearchsection, setHasUserForSearchsection] = useState(true);
     const [hasMyList, setHasMyList] = useState(false);
 
@@ -35,13 +34,14 @@ const Sections = () => {
     const addMovie = (item, movieState) => {      
         let newList = {myList: [...movieState.myList], movie: {...item}}
         const user = JSON.parse(sessionStorage.getItem('user'))
+        const token = sessionStorage.getItem('token');
 
         let newMovieList = {
           user_id:  user.uuid,
           movie_id: item.id       
         }
         
-        const response = addList(newMovieList, newList)
+        const response = addList(newMovieList, newList, token)
 
         if(response === 'success'){
             Swal.fire({

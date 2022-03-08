@@ -1,0 +1,40 @@
+import { NextFunction, Request, Response } from "express";
+import ForbiddenError from "../models/errors/forbidden.error.model";
+import JWT from 'jsonwebtoken';
+
+
+async function bearerAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
+    
+    try{
+       
+        const authorizationHeader = req.headers['authorization'];
+
+        if(!authorizationHeader){
+            throw new ForbiddenError('Credenciais nao informadas');
+        }
+        
+        const [authenticationType, token] = authorizationHeader.split(' ');
+        
+        if (authenticationType !== 'Bearer' || !token) {
+            throw new ForbiddenError('Tipo de authenticação inválido');
+        }
+        
+        const secretKey:string = process.env.SECRETKEY!;
+        const tokenPayload = JWT.verify(token, secretKey); 
+        
+        const {exp }= tokenPayload;
+
+        console.log(exp)
+
+        console.log('tokenPayloead' , tokenPayload)
+
+        console.log('beaaaaree1')
+
+        next();
+    }catch(error){
+        throw new ForbiddenError('Erro ao buscar o usuário', error);
+    }
+}
+
+
+export default bearerAuthenticationMiddleware;

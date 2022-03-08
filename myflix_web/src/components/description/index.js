@@ -25,13 +25,14 @@ const Description = () => {
     const add = (props) =>{ //adicionar o id na lista
         let newList = {myList: [...movieState.myList], movie: {...props.movie}}
         const user = JSON.parse(sessionStorage.getItem('user'))
+        const token = sessionStorage.getItem('token');
 
         let newMovieList = {
           user_id:  user.uuid,
           movie_id: props.movie.id       
         }
         
-        const response = addList(newMovieList, newList)
+        const response = addList(newMovieList, newList, token)
 
         if(response === 'success'){
             Swal.fire({

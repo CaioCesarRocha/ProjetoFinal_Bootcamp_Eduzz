@@ -60,10 +60,11 @@ const Login = () =>{
             }
 
             const user = response.data.user
-            await setUsername(user)
+            //await setUsername(user)
 
             sessionStorage.setItem('user', JSON.stringify(user));
-            sessionStorage.setItem('signed', true);  
+            sessionStorage.setItem('signed', true); 
+            sessionStorage.setItem('token', response.data.token) 
             
             getMyList(user.uuid)
 

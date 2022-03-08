@@ -101,7 +101,7 @@ const RegisterMovie = () => {
             const response = await handleSubmit(data);
 
             formik.resetForm();
-            alert(`Filme ${data.title}cadastrado`);
+            alert(`Filme ${data.title} cadastrado`);
             console.log("Olha ai a resposta:",response);
 
             /*navigate.push({
