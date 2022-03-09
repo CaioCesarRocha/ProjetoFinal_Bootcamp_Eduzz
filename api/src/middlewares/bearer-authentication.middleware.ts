@@ -4,9 +4,8 @@ import JWT from 'jsonwebtoken';
 
 
 async function bearerAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
-    
-    try{
-       
+
+    try{     
         const authorizationHeader = req.headers['authorization'];
 
         if(!authorizationHeader){
@@ -20,17 +19,15 @@ async function bearerAuthenticationMiddleware(req: Request, res: Response, next:
         }
         
         const secretKey:string = process.env.SECRETKEY!;
-        const tokenPayload = JWT.verify(token, secretKey); 
-        
-        const {exp }= tokenPayload;
+       
+        JWT.verify(token, secretKey, function(err, decoded) {
+            if (err) {  // Manage different errors here (Expired, untrusted...)
+                return ({token: 'expired'})               
+            }
+            req.auth = decoded // If no error, token info is returned in 'decoded'
+            next()
+        }); 
 
-        console.log(exp)
-
-        console.log('tokenPayloead' , tokenPayload)
-
-        console.log('beaaaaree1')
-
-        next();
     }catch(error){
         throw new ForbiddenError('Erro ao buscar o usuário', error);
     }

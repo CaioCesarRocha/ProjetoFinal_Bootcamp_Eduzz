@@ -10,6 +10,7 @@ export const MovieContext = createContext({
 
 
 const MovieProvider = ({ children }) => {
+  
     const [movieState, setMovieState] = useState({
         hasUser: false,
         loading: false,
@@ -78,7 +79,10 @@ const MovieProvider = ({ children }) => {
       console.log(config)
 
       try{
-        api.post('userListMovie', newMovie, config);
+        api.post('userListMovie', newMovie, config).then(({data}) => {
+          console.log('data', data)
+          if( data === 'expired') return('expired') 
+        });
         setMovieState((prevState)=> ({
           ...prevState,
           hasUser: true,

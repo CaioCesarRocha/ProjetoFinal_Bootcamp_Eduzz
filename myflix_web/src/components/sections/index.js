@@ -51,7 +51,7 @@ const Sections = () => {
               showConfirmButton: false,
               timer: 2500
             }) 
-        }       
+        }     
     }
 
     const removeMovie = (movieState, id) => { 
