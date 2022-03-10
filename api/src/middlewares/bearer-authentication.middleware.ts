@@ -22,7 +22,7 @@ async function bearerAuthenticationMiddleware(req: Request, res: Response, next:
        
         JWT.verify(token, secretKey, function(err, decoded) {
             if (err) {  // Manage different errors here (Expired, untrusted...)
-                return ({token: 'expired'})               
+                return res.json('expired')               
             }
             req.auth = decoded // If no error, token info is returned in 'decoded'
             next()

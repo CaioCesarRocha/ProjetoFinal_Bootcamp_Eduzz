@@ -31,6 +31,8 @@ const MovieProvider = ({ children }) => {
         myList: []
     });
 
+    const [tokenExpired, setTokenExpired] = useState(false);
+
     const getMovie = (movieName) => {
         setMovieState((prevState) => ({
           ...prevState,
@@ -71,29 +73,27 @@ const MovieProvider = ({ children }) => {
         });       
     }
 
-    const addList = (newMovieList, newList, token) => {
-      let newMovie = {...newMovieList}
-      
+    async function addList (newMovieList, newList, token) {
+      let newMovie = {...newMovieList}     
       const config = { headers: { authorization: `Bearer ${token}` } };
 
-      console.log(config)
-
-      try{
-        api.post('userListMovie', newMovie, config).then(({data}) => {
-          console.log('data', data)
-          if( data === 'expired') return('expired') 
-        });
+      try{ 
+        let expired = false;
+       await api.post('userListMovie', newMovie, config).then(({data}) => {
+          if( data === 'expired') expired = true;
+        })
+       
+        if(expired === true) return('expired')
         setMovieState((prevState)=> ({
           ...prevState,
           hasUser: true,
           myList: [...newList.myList, newList.movie]
-        }));  
-        return('success')
+        }));
+        return('success')       
       }catch(error){
         return('failed')
-      }
-   
-    
+      } 
+     
     }
 
     const removeList = (myList, deleteMovie) => {

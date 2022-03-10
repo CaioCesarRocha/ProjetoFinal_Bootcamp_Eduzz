@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SectionItem from '../sectionsItems';
 import useMovie from '../../hooks/movieHooks';
 import * as S from "./styled";
+import { useNavigate } from 'react-router-dom';
 
 import { FiPlusCircle , FiXCircle} from 'react-icons/fi';
 import Swal from "sweetalert2";
@@ -12,6 +13,7 @@ const Sections = () => {
     const { movieState, removeList, addList, getRelated, getMovie } = useMovie();
     const [hasUserForSearchsection, setHasUserForSearchsection] = useState(true);
     const [hasMyList, setHasMyList] = useState(false);
+    const navigate = useNavigate();
 
 
 
@@ -43,6 +45,8 @@ const Sections = () => {
         
         const response = addList(newMovieList, newList, token)
 
+        console.log('resposta' ,  response)
+
         if(response === 'success'){
             Swal.fire({
               position: 'top-end',
@@ -51,6 +55,9 @@ const Sections = () => {
               showConfirmButton: false,
               timer: 2500
             }) 
+        }
+        else if(response === 'expired'){
+          navigate('/session-expired');
         }     
     }
 

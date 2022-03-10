@@ -5,8 +5,7 @@ import DatabaseError from '../models/errors/database.error.model';
 class UserListMovieController {
 
     async create (req: Request, res: Response){ 
-        const tokenValue = req.auth
-        console.log('ttk' ,tokenValue)
+        return res.json('success')
         /*const {
             user_id,
             movie_id,

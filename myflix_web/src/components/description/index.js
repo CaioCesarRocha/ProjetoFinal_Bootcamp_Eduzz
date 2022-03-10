@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { FiPlusCircle, FiDownload,FiPlayCircle } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
+
 
 import useMovie from "../../hooks/movieHooks";
 import ShowTrailer from "../showTrailer";
@@ -11,6 +13,7 @@ const Description = () => {
     const { movieState, addList } = useMovie();
     const [trailerURL, setTrailerURL] = useState("https://www.youtube.com/watch?v=QPYneV_pfec");
     const [hasTrailer, setHasTrailer] = useState(false);
+    const navigate = useNavigate();
     
 
     const showDownload = (props) => {
@@ -22,7 +25,7 @@ const Description = () => {
         setTrailerURL(trailer);
     }
 
-    const add = (props) =>{ //adicionar o id na lista
+    async function add(props) { //adicionar o id na lista
         let newList = {myList: [...movieState.myList], movie: {...props.movie}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');
@@ -32,7 +35,7 @@ const Description = () => {
           movie_id: props.movie.id       
         }
         
-        const response = addList(newMovieList, newList, token)
+        const response = await addList(newMovieList, newList, token)
 
         if(response === 'success'){
             Swal.fire({
@@ -42,7 +45,10 @@ const Description = () => {
               showConfirmButton: false,
               timer: 2500
             })
-        } 
+        }
+        else if(response === 'expired'){
+          navigate('/session-expired');
+        }  
     }
   
     return (
