@@ -19,6 +19,7 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
         password
     } = req.body;
     
+
     try{                 
         const user = await knex('users').where('email', email).first()
 

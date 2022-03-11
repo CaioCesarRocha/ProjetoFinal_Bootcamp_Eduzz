@@ -11,7 +11,7 @@ userListMovieRoutes.post('/userListMovie', bearerAuthenticationMiddleware, userL
 
 userListMovieRoutes.get('/userListMovie/:user_id', userListMovieController.show);
 
-userListMovieRoutes.delete('/userListMovie/:user_id/:movie_id', userListMovieController.delete)
+userListMovieRoutes.delete('/userListMovie/:user_id/:movie_id', bearerAuthenticationMiddleware, userListMovieController.delete)
 
 
 

@@ -20,9 +20,10 @@ const Sections = () => {
     useEffect(() =>{              
       const getMoviesRelated = async () => {
         await getRelated(movieState)
+        console.log(movieState.myList)
       };  
       getMoviesRelated();
-    }, [movieState.hasUser]);
+    }, []);
 
     useEffect(() =>{
       if(movieState.myList.length !== 0){
@@ -33,7 +34,17 @@ const Sections = () => {
     }, [movieState.myList]);
 
 
-    const addMovie = (item, movieState) => {      
+    async function addMovie(item, movieState) { 
+        const idMovie = item.id
+        let hasMovie = false
+        await movieState.myList.map(item => {
+          if(item.id === idMovie)  hasMovie = true;     
+        })
+        if(hasMovie === true){
+          alert(`Esse filme já está em sua lista.`);
+          return;
+        }
+           
         let newList = {myList: [...movieState.myList], movie: {...item}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');
@@ -43,9 +54,7 @@ const Sections = () => {
           movie_id: item.id       
         }
         
-        const response = addList(newMovieList, newList, token)
-
-        console.log('resposta' ,  response)
+        const response = await addList(newMovieList, newList, token)
 
         if(response === 'success'){
             Swal.fire({
@@ -61,15 +70,18 @@ const Sections = () => {
         }     
     }
 
-    const removeMovie = (movieState, id) => { 
+    async function removeMovie(movieState, id){ 
       const user = JSON.parse(sessionStorage.getItem('user'))
+      const token = sessionStorage.getItem('token');
       
       let deleteMovie = {
         user_id:  user.uuid,
         movie_id: id       
       }
        
-      return removeList(movieState.myList, deleteMovie);
+      const response = await removeList(movieState.myList, deleteMovie, token);
+
+      if(response === 'expired')  { navigate('/session-expired');}     
     }
 
     const getInfo  = (title) =>{

@@ -1,4 +1,5 @@
 import {Request, Response} from 'express';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import knex from '../database/connection';
 import DatabaseError from '../models/errors/database.error.model';
 
@@ -45,6 +46,8 @@ class UserListMovieController {
             .where('user_id', user_id)
             .andWhere('movie_id', movie_id)
             .del()
+
+            return res.status(200).json('Success');
         }catch(error){
             throw new DatabaseError('Erro ao deletar filme do usuário', error);
         }
