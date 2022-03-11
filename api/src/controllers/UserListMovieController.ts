@@ -5,8 +5,7 @@ import DatabaseError from '../models/errors/database.error.model';
 class UserListMovieController {
 
     async create (req: Request, res: Response){ 
-        return res.json('success')
-        /*const {
+        const {
             user_id,
             movie_id,
         } = req.body
@@ -19,7 +18,7 @@ class UserListMovieController {
 
         }catch(error){
             throw new DatabaseError('Erro ao inserir o filme do usuário', error);
-        }*/
+        }
     }
 
     async show (req: Request, res: Response){ 

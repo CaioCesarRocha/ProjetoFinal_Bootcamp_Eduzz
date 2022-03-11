@@ -18,15 +18,15 @@ export const WrapperHeader = styled.header`
 export const WrapperLogo = styled.a`
     img {
         max-width: 100%;
-        width: 95px;
+        width: 75px;
     } 
 
     @media(max-width: 800px) {
-        width: 75px;
+        width: 55px;
     }
 
     @media(max-width: 350px) {
-        width: 55px;
+        width: 45px;
     }
 `;
 
