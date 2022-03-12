@@ -22,7 +22,7 @@ const Sections = () => {
         await getRelated(movieState)      
       };  
       getMoviesRelated();
-      
+
       const user = JSON.parse(sessionStorage.getItem('user'))
       getMyList(user.uuid)
     }, []);
@@ -37,15 +37,16 @@ const Sections = () => {
 
 
     async function addMovie(item, movieState) { 
-        const idMovie = item.id
-        let hasMovie = false
-        await movieState.myList.map(item => {
-          if(item.id === idMovie)  hasMovie = true;     
-        })
-        if(hasMovie === true){
+        let listMovie = [];
+
+        await movieState.myList.map(item =>{ // map para pegar os ids dos movies presentes na lista
+          listMovie.push(item.id) 
+        });
+
+        if(listMovie.includes(item.id)){ // se o item ja conter na lista, é retornado sem inserir
           alert(`Esse filme já está em sua lista.`);
           return;
-        }
+        } 
            
         let newList = {myList: [...movieState.myList], movie: {...item}}
         const user = JSON.parse(sessionStorage.getItem('user'))

@@ -26,10 +26,17 @@ const Description = () => {
     }
 
     async function add(props) { //adicionar o id na lista
-        console.log('list', movieState.myList)
-        let listaMovie = [...movieState.myList.id]
-        console.log('ids', listaMovie)
-        console.log('id_movie', props.movie.id)
+        let listMovie = [];
+
+        movieState.myList.map(item =>{ 
+          listMovie.push(item.id) 
+        });
+
+        if(listMovie.includes(props.movie.id)){
+          alert(`Esse filme já está em sua lista.`);
+          return;
+        }     
+        
         let newList = {myList: [...movieState.myList], movie: {...props.movie}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');
