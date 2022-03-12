@@ -26,6 +26,10 @@ const Description = () => {
     }
 
     async function add(props) { //adicionar o id na lista
+        console.log('list', movieState.myList)
+        let listaMovie = [...movieState.myList.id]
+        console.log('ids', listaMovie)
+        console.log('id_movie', props.movie.id)
         let newList = {myList: [...movieState.myList], movie: {...props.movie}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');

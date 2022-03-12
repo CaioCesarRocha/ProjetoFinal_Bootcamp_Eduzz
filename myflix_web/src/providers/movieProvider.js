@@ -41,7 +41,6 @@ const MovieProvider = ({ children }) => {
 
         api.get(`movie/${movieName}`)
         .then(( {data} ) => {
-          //console.log(data)
           if(data.length !== 0){
             const dataMovie = data.movie[0];
             const dataGenres = [data.genres[0], data.genres[1]]

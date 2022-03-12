@@ -9,8 +9,7 @@ import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import Button from '../../components/button';
-import useAuth from '../../hooks/authHooks';
-import useMovie from '../../hooks/movieHooks';
+
 
 const schema = Yup.object().shape({
     email: Yup.string().email().required('O campo Email é obrigatório'),
@@ -24,10 +23,6 @@ const Login = () =>{
     const initialValues = {email: '', password: ''};
 
     const navigate =  useNavigate();
-
-    const {setUsername} = useAuth();
-    const {getMyList} = useMovie();
-
 
 
     async function handleSubmit(data){
@@ -60,13 +55,10 @@ const Login = () =>{
             }
 
             const user = response.data.user
-            //await setUsername(user)
 
             sessionStorage.setItem('user', JSON.stringify(user));
             sessionStorage.setItem('signed', true); 
-            sessionStorage.setItem('token', response.data.token) 
-            
-            getMyList(user.uuid)
+            sessionStorage.setItem('token', response.data.token);
 
             formik.resetForm();
             navigate('/home')

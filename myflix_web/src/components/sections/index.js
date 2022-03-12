@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 
 const Sections = () => {
-    const { movieState, removeList, addList, getRelated, getMovie } = useMovie();
+    const { movieState, removeList, addList, getRelated, getMovie, getMyList } = useMovie();
     const [hasUserForSearchsection, setHasUserForSearchsection] = useState(true);
     const [hasMyList, setHasMyList] = useState(false);
     const navigate = useNavigate();
@@ -19,10 +19,12 @@ const Sections = () => {
 
     useEffect(() =>{              
       const getMoviesRelated = async () => {
-        await getRelated(movieState)
-        console.log(movieState.myList)
+        await getRelated(movieState)      
       };  
       getMoviesRelated();
+      
+      const user = JSON.parse(sessionStorage.getItem('user'))
+      getMyList(user.uuid)
     }, []);
 
     useEffect(() =>{
