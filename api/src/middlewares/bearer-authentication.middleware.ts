@@ -1,12 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import ForbiddenError from "../models/errors/forbidden.error.model";
 import JWT from 'jsonwebtoken';
+import ValidateRefreshToken from "../provider/ValidateRefreshToken";
 
 
 async function bearerAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
 
     try{     
         const authorizationHeader = req.headers['authorization'];
+        const refreshToken_id = req.headers['refresh_token'];
 
         if(!authorizationHeader){
             throw new ForbiddenError('Credenciais nao informadas');
@@ -20,9 +22,12 @@ async function bearerAuthenticationMiddleware(req: Request, res: Response, next:
         
         const secretKey:string = process.env.SECRETKEY!;
        
-        JWT.verify(token, secretKey, function(err, decoded) {
+        JWT.verify(token, secretKey, async function(err, decoded) {
             if (err) {  // Manage different errors here (Expired, untrusted...)
-                return res.json('expired')               
+                const validateRefreshToken = new ValidateRefreshToken();
+                const newTokens = await validateRefreshToken.execute(refreshToken_id)
+                
+                return res.json(newTokens)               
             }
             req.auth = decoded // If no error, token info is returned in 'decoded'
             next()

@@ -59,6 +59,7 @@ const Login = () =>{
             sessionStorage.setItem('user', JSON.stringify(user));
             sessionStorage.setItem('signed', true); 
             sessionStorage.setItem('token', response.data.token);
+            sessionStorage.setItem('refresh_token', response.data.refreshToken);
 
             formik.resetForm();
             navigate('/home')

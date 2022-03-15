@@ -8,12 +8,13 @@ class GenerateRefreshToken {
     async execute(userId: string){
         const user_id = userId;
 
-        const expiresIn = dayjs().add(15, 'second').unix();
+        const expiresIn = dayjs().add(300, 'second').unix();
 
         const newRefreshToken = { expiresIn, user_id}
 
         try{
-            const generateRefreshToken = await knex('refresh_tokens').insert(newRefreshToken).returning('id');
+            let generateRefreshToken = await knex('refresh_tokens').insert(newRefreshToken).returning('id');
+            generateRefreshToken = generateRefreshToken[0].id
             
             return generateRefreshToken;
         }catch(error){

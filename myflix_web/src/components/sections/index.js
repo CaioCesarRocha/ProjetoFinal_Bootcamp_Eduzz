@@ -51,13 +51,14 @@ const Sections = () => {
         let newList = {myList: [...movieState.myList], movie: {...item}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');
+        const refresh_token = sessionStorage.getItem('refresh_token');
 
         let newMovieList = {
           user_id:  user.uuid,
           movie_id: item.id       
         }
         
-        const response = await addList(newMovieList, newList, token)
+        const response = await addList(newMovieList, newList, token, refresh_token)
 
         if(response === 'success'){
             Swal.fire({
@@ -76,13 +77,14 @@ const Sections = () => {
     async function removeMovie(movieState, id){ 
       const user = JSON.parse(sessionStorage.getItem('user'))
       const token = sessionStorage.getItem('token');
+      const refresh_token = sessionStorage.getItem('refresh_token');
       
       let deleteMovie = {
         user_id:  user.uuid,
         movie_id: id       
       }
        
-      const response = await removeList(movieState.myList, deleteMovie, token);
+      const response = await removeList(movieState.myList, deleteMovie, token, refresh_token);
 
       if(response === 'expired')  { navigate('/session-expired');}     
     }

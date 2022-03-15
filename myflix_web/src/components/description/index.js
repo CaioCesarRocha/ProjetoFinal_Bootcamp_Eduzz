@@ -40,13 +40,14 @@ const Description = () => {
         let newList = {myList: [...movieState.myList], movie: {...props.movie}}
         const user = JSON.parse(sessionStorage.getItem('user'))
         const token = sessionStorage.getItem('token');
+        const refresh_token = sessionStorage.getItem('refresh_token');
 
         let newMovieList = {
           user_id:  user.uuid,
           movie_id: props.movie.id       
         }
         
-        const response = await addList(newMovieList, newList, token)
+        const response = await addList(newMovieList, newList, token, refresh_token)
 
         if(response === 'success'){
             Swal.fire({

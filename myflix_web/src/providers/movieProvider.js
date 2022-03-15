@@ -72,17 +72,29 @@ const MovieProvider = ({ children }) => {
         });       
     }
 
-    async function addList (newMovieList, newList, token) {
+    async function addList (newMovieList, newList, token, refresh_token) {
+     
       let newMovie = {...newMovieList}     
-      const config = { headers: { authorization: `Bearer ${token}` } };
+      const config = { 
+        headers: { 
+          authorization: `Bearer ${token}`,
+          refresh_token: refresh_token       
+      } };
 
       try{ 
         let expired = false;
        await api.post('userListMovie', newMovie, config).then(({data}) => {
+          console.log('dataa', data)
           if( data === 'expired') expired = true;
+
+          if(data.newAccessToken) {
+            sessionStorage.setItem('token', data.newAccessToken);
+            sessionStorage.setItem('refresh_token', data.newRefreshToken);
+          }
         })
        
         if(expired === true) return('expired')
+      
         setMovieState((prevState)=> ({
           ...prevState,
           hasUser: true,
@@ -95,15 +107,24 @@ const MovieProvider = ({ children }) => {
      
     }
 
-    async function removeList(myList, deleteMovie, token){
+    async function removeList(myList, deleteMovie, token, refresh_token){
       const user_id = deleteMovie.user_id;
       const movie_id = deleteMovie.movie_id;
-      const config = { headers: { authorization: `Bearer ${token}` } };
+      const config = { 
+        headers: { 
+          authorization: `Bearer ${token}`,
+          refresh_token: refresh_token 
+        } };
 
       try{
         let expired = false;
         await api.delete(`userListMovie/${user_id}/${movie_id}`, config,).then(({data})=>{
           if( data === 'expired') expired = true;
+
+          if(data.newAccessToken) {
+            sessionStorage.setItem('token', data.newAccessToken);
+            sessionStorage.setItem('refresh_token', data.newRefreshToken);
+          }
         });
  
         if(expired === true) return('expired');
@@ -144,7 +165,7 @@ const MovieProvider = ({ children }) => {
      
     const getRelated = (movie) =>{
       let relateds = []
-      //console.log(movie.movie)
+
       api.get(`genres/${movie.movie.genres[1].id}`)
       .then(( {data} ) => {   
         data.map(item => {
@@ -163,8 +184,8 @@ const MovieProvider = ({ children }) => {
     const contextValue = {
         movieState,     
         getMovie: useCallback((movieName) => getMovie(movieName), []),
-        addList: useCallback((newMovieList, newList, token) => addList(newMovieList, newList, token), []),
-        removeList: useCallback((myList, deleteMovie, token) => removeList(myList, deleteMovie, token), []),
+        addList: useCallback((newMovieList, newList, token, refresh_token) => addList(newMovieList, newList, token, refresh_token), []),
+        removeList: useCallback((myList, deleteMovie, token, refresh_token) => removeList(myList, deleteMovie, token, refresh_token), []),
         getMyList: useCallback((user_id) => getMyList(user_id), []),
         getRelated: useCallback((movie) => getRelated(movie), []),
     };

@@ -27,7 +27,7 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
         const generateRefreshToken = new GenerateRefreshToken();
         const refreshToken = await generateRefreshToken.execute(user.uuid)
 
-        res.status(StatusCodes.OK).json({ token: jwt, wrongPass: false, user: user, refreshToken });
+        res.status(StatusCodes.OK).json({ token: jwt, wrongPass: false, user: user, refreshToken});
     } catch (error) {
         console.log('entrei error')
         next(error);

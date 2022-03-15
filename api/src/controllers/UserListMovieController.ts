@@ -1,11 +1,10 @@
 import {Request, Response} from 'express';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import knex from '../database/connection';
 import DatabaseError from '../models/errors/database.error.model';
 
 class UserListMovieController {
 
-    async create (req: Request, res: Response){ 
+    async create (req: Request, res: Response){        
         const {
             user_id,
             movie_id,
@@ -21,6 +20,7 @@ class UserListMovieController {
             throw new DatabaseError('Erro ao inserir o filme do usuário', error);
         }
     }
+
 
     async show (req: Request, res: Response){ 
         const { user_id } = req.params;
@@ -38,8 +38,12 @@ class UserListMovieController {
         }
     }
 
+
     async delete (req: Request, res: Response){ 
-        const { user_id, movie_id } = req.params;
+        const { 
+            user_id, 
+            movie_id 
+        } = req.params;
         
         try{
             await knex('user_myListMovie')
