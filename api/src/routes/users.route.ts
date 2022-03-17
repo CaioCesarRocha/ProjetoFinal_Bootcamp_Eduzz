@@ -1,4 +1,4 @@
-import express , { NextFunction, Request, Response, Router }from 'express';
+import express from 'express';
 import {celebrate, Joi} from 'celebrate';
 import UserController from '../controllers/UserController';
 
@@ -9,7 +9,7 @@ const userController = new UserController();
 
 userRoutes.get('/user', userController.login)
 
-
+//ROTA PARA CRIAÇÃO DO USUÁRIO
 userRoutes.post(
     '/user',
     celebrate({  //validação dos campos no back

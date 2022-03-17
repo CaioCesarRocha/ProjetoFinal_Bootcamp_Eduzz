@@ -1,18 +1,17 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import basicAuthenticationMiddleware from '../middlewares/basic-authentication.middleware';
-
-import { StatusCodes } from 'http-status-codes';
-
-import dotenv from 'dotenv';
-
 import GenerateRefreshToken from '../provider/GenerateRefreshToken';
 import GenerateToken from '../provider/GenerateToken';
+
+import { StatusCodes } from 'http-status-codes';
+import dotenv from 'dotenv';
+
 
 dotenv.config();
 
 const authorizationRoute = Router();
 
-
+//ROTA PARA LOGIN DO USUÁRIO
 authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {     
         const user = req.user; //necessário extender a requisição no @types;

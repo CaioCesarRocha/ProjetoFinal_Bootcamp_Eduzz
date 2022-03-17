@@ -6,6 +6,7 @@ dotenv.config();
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+//CONFIGURAÇÕES NECESSÁRIOS PARA APROVEITAR OS RECURSOS DO KNEX NA APLICAÇÃO
 module.exports = {
 
   development: {

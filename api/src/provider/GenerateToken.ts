@@ -1,11 +1,10 @@
-import knex from '../database/connection';
-import DatabaseError from '../models/errors/database.error.model';
-
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+
+//FUNÇÃO PARA GERAR O ACESS TOKEN, PASSANDO SEU TEMPO DE EXPIRAÇÃO
 class GenerateToken {
     async execute(userId: string){
 

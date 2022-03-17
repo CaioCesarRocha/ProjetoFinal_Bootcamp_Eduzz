@@ -4,6 +4,7 @@ import DatabaseError from '../models/errors/database.error.model';
 
 class UserListMovieController {
 
+    //inseri movie escolhido pelo usuário na myList dele
     async create (req: Request, res: Response){        
         const {
             user_id,
@@ -22,6 +23,7 @@ class UserListMovieController {
     }
 
 
+    //pega os movies da myList de um usuário específico.
     async show (req: Request, res: Response){ 
         const { user_id } = req.params;
 
@@ -39,6 +41,7 @@ class UserListMovieController {
     }
 
 
+    //deleta movie escolhido pelo usuário da myList dele
     async delete (req: Request, res: Response){ 
         const { 
             user_id, 

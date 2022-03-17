@@ -3,6 +3,8 @@ import DatabaseError from '../models/errors/database.error.model';
 
 import dayjs from 'dayjs';
 
+
+//FUNÇÃO PARA GERAR O REFRESH TOKEN, PASSANDO SEU TEMPO E INSERINDO O TOKEN GERADO NO BANCO
 class GenerateRefreshToken {
 
     async execute(userId: string){

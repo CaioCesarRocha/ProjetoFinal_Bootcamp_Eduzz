@@ -15,6 +15,7 @@ let iv = crypto.randomBytes(16);
 
 class UserController {
 
+    //cria o usuário no banco ja com senha criptografada
     async create (req: Request, res: Response){      
         const {
             username,

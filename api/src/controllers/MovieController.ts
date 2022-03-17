@@ -4,6 +4,7 @@ import knex from '../database/connection';
 import DatabaseError from '../models/errors/database.error.model';
 
 class MovieController {
+    //cria o filme na tablea movies
     async create (req: Request, res: Response){
 
         const {
@@ -32,8 +33,6 @@ class MovieController {
         const movie_id = insertedIds[0].id;
 
         //ADD O ID(EMPRESA) RELACIONANDO OS ITEMS COM A EMPRESA (SERIA GENEROS COM O FILME)       
-        console.log("genres", genres)
-
         let genre_id = genres[0];
         const movieGenres1 = { movie_id, genre_id }        
         await trx('movies_genres').insert(movieGenres1);
@@ -52,7 +51,7 @@ class MovieController {
     }
 
 
-
+    //pega as info do filme selecionado pelo usuário na tabela movie, e os generos dele na tabela genres...
     async show(title: string){
         //const {title} = req.params;
 
@@ -67,8 +66,7 @@ class MovieController {
             .select('genres.*');
             
             const data = {movie: dataMovie, genres}
-            return(data)
-            //return res.json({movie: dataMovie, genres});
+            return(data);
         }
         catch(error){
             throw new DatabaseError('Erro na consulta por ID/MOVIE', error);

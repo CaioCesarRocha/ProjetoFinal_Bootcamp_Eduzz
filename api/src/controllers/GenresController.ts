@@ -3,6 +3,7 @@ import knex from '../database/connection';
 
 class GenreController {
 
+    //pega todos os genêros cadastrados no banco
     async index (req: Request, res: Response){
         const genres = await knex('genres').select('*');
 
@@ -15,6 +16,7 @@ class GenreController {
         return res.json(serializedGenres);  
     }
 
+    //a partir do id de um filme base, é pego os filmes relacionados que possuem o mesmo gênero.
     async show (req: Request, res: Response){
         const {id} = req.params;
  

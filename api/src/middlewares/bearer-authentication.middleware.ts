@@ -4,6 +4,7 @@ import JWT from 'jsonwebtoken';
 import ValidateRefreshToken from "../provider/ValidateRefreshToken";
 
 
+//autenticação do token do usuário, checado se é válido, e se não expirou
 async function bearerAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
 
     try{     

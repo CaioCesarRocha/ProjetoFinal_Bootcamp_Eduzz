@@ -1,4 +1,4 @@
-import express , { NextFunction, Request, Response, Router }from 'express';
+import express , { NextFunction, Request, Response}from 'express';
 import {celebrate, Joi} from 'celebrate';
 import { StatusCodes } from 'http-status-codes';
 import MovieController from '../controllers/MovieController';
@@ -7,6 +7,7 @@ const moviesRoutes = express.Router();
 
 const movieController = new MovieController()
 
+//PEGA UM FILME ESPECÍFICO A PARTIR DO TÍTULO
 moviesRoutes.get('/movie/:title', async (req: Request<{title: string}>, res: Response, next: NextFunction) => {
     try{
         const title = req.params.title;
@@ -17,6 +18,7 @@ moviesRoutes.get('/movie/:title', async (req: Request<{title: string}>, res: Res
     }
 });
 
+//ROTA PARA CRIAÇÃO DE UM FILME
 moviesRoutes.post(
     '/movie',
     celebrate({  //validação dos campos no back

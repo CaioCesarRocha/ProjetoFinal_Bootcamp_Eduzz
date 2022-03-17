@@ -13,6 +13,7 @@ const secret = process.env.SECRET
 let key = crypto.createHash('sha256').update(String(secret)).digest('base64').substr(0, 32);
 
 
+//autenticação do usuário
 async function basicAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
     const {
         email,

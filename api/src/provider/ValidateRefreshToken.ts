@@ -4,7 +4,7 @@ import GenerateToken from './GenerateToken';
 import dayjs from 'dayjs';
 import GenerateRefreshToken from './GenerateRefreshToken';
 
-
+//FUNCTION PARA VALIDAR O REFRESH TOKEN,  SE NECESSÁRIO: GERAR NOVOS ACCESS E REFRESH TOKENS E EXCLUIR O ANTIGO REFRESH NO BANCO
 class ValidateRefreshToken {
     async execute(refresh_Token: any){
         const id = refresh_Token;
