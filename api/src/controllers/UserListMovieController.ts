@@ -43,21 +43,23 @@ class UserListMovieController {
 
     //deleta movie escolhido pelo usuário da myList dele
     async delete (req: Request, res: Response){ 
+
         const { 
             user_id, 
             movie_id 
         } = req.params;
-        
+
         try{
             await knex('user_myListMovie')
             .where('user_id', user_id)
             .andWhere('movie_id', movie_id)
-            .del()
-
-            return res.status(200).json('Success');
+            .del();
+            
+            return res.json('Success');
         }catch(error){
             throw new DatabaseError('Erro ao deletar filme do usuário', error);
         }
+        
     }
 
 

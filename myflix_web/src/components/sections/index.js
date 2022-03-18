@@ -16,8 +16,7 @@ const Sections = () => {
     const navigate = useNavigate();
 
 
-
-    useEffect(() =>{              
+    useEffect(() =>{ // assim que a pagina carrega pega os filmes relacionados e os filmes da myList             
       const getMoviesRelated = async () => {
         await getRelated(movieState)      
       };  
@@ -27,7 +26,7 @@ const Sections = () => {
       getMyList(user.uuid)
     }, []);
 
-    useEffect(() =>{
+    useEffect(() =>{//seta se a lista ja foi pega ou não
       if(movieState.myList.length !== 0){
         setHasMyList(true) 
       }else{
@@ -89,7 +88,7 @@ const Sections = () => {
       if(response === 'expired')  { navigate('/session-expired');}     
     }
 
-    const getInfo  = (title) =>{
+    const getInfo = (title) =>{
       return getMovie(title);
     }
     

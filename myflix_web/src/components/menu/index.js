@@ -20,7 +20,7 @@ const Menu = () =>{
         }catch(error){console.log(error)}                     
     }, []);
 
-    function logout(){
+    function logout(){//desloga o usuário e limpa as info no storage
         sessionStorage.setItem('user', {});
         sessionStorage.setItem('signed', false);
     }
@@ -43,9 +43,7 @@ const Menu = () =>{
             
             <S.WrapperContentTitle>
                 <S.WrapperTitle>MYFLIX</S.WrapperTitle>
-            </S.WrapperContentTitle>
-
-                      
+            </S.WrapperContentTitle>                    
 
             {
             signed ?

@@ -32,7 +32,7 @@ const Description = () => {
           listMovie.push(item.id) 
         });
 
-        if(listMovie.includes(props.movie.id)){
+        if(listMovie.includes(props.movie.id)){ //checa se o filme selecionado ja esta lista
           alert(`Esse filme já está em sua lista.`);
           return;
         }     
@@ -47,7 +47,7 @@ const Description = () => {
           movie_id: props.movie.id       
         }
         
-        const response = await addList(newMovieList, newList, token, refresh_token)
+        const response = await addList(newMovieList, newList, token, refresh_token)//envia as info necessária para add o filme
 
         if(response === 'success'){
             Swal.fire({

@@ -110,6 +110,7 @@ const MovieProvider = ({ children }) => {
     async function removeList(myList, deleteMovie, token, refresh_token){
       const user_id = deleteMovie.user_id;
       const movie_id = deleteMovie.movie_id;
+      console.log('refresh_token', refresh_token)
       const config = { 
         headers: { 
           authorization: `Bearer ${token}`,
@@ -117,8 +118,9 @@ const MovieProvider = ({ children }) => {
         } };
 
       try{
-        let expired = false;
+        let expired = false;     
         await api.delete(`userListMovie/${user_id}/${movie_id}`, config,).then(({data})=>{
+          console.log('data', data)
           if( data === 'expired') expired = true;
 
           if(data.newAccessToken) {
@@ -128,6 +130,7 @@ const MovieProvider = ({ children }) => {
         });
  
         if(expired === true) return('expired');
+        console.log('PASSEI NO DELETE DPS DE OPERADO')
         setMovieState((prevState) => ({
           ...prevState,
           myList: []

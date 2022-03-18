@@ -8,7 +8,7 @@ const Header = () => {
 
   const submitGetMovie = () => {
     if (!movieNameForSearch) return;
-    return getMovie(movieNameForSearch);
+    return getMovie(movieNameForSearch); //função pra pegar o filme pesquisado.
   };
 
   return (
