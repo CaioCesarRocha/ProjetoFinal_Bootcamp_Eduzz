@@ -28,7 +28,7 @@ class ValidateRefreshToken {
         await knex('refresh_tokens').where('user_id', refreshToken.user_id ).del()
         const generateRefreshToken = new GenerateRefreshToken();
         const newRefreshToken = await generateRefreshToken.execute(refreshToken.user_id)
-   
+        
         const newTokens = {newAccessToken, newRefreshToken}
 
         return (newTokens);

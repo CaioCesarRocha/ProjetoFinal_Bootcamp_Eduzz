@@ -15,8 +15,6 @@ class UserListMovieController {
 
         try{
             await knex('user_myListMovie').insert(userList);
-            return res.status(200).json('Success');
-
         }catch(error){
             throw new DatabaseError('Erro ao inserir o filme do usuário', error);
         }
@@ -54,8 +52,6 @@ class UserListMovieController {
             .where('user_id', user_id)
             .andWhere('movie_id', movie_id)
             .del();
-            
-            return res.json('Success');
         }catch(error){
             throw new DatabaseError('Erro ao deletar filme do usuário', error);
         }

@@ -33,7 +33,8 @@ async function bearerAuthenticationMiddleware(req: Request, res: Response, next:
                 return res.json(newTokens)               
             }
             req.auth = decoded // If no error, token info is returned in 'decoded'
-            next()
+            next();
+            return res.status(200).json('Success')
         }); 
 
     }catch(error){
