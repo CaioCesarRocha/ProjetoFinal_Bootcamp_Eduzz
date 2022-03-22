@@ -36,3 +36,24 @@
 
 ### FRONTEND:  React
 
+- React (useEffect, useState, useHooks, useContext )
+
+- React Router Dom
+
+- React Tabs
+
+- React Icons
+
+- React Player
+
+- Axios
+
+- DBjson (testes)
+
+- Formik e Yup (Validação dos formulários)
+
+- Session Storage
+
+- Styled Components
+
+- SweetAlert2
