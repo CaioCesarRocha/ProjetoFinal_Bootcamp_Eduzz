@@ -9,6 +9,7 @@ import * as S from './styled';
 import Menu from '../../components/menu';
 import FieldInput from '../../components/input';
 import Button from '../../components/button';
+import imgCinema from '../../assets/cinema.jpg';
 
 
 const schema = Yup.object().shape({
@@ -69,7 +70,10 @@ const Login = () =>{
 
     return (
         <S.WrapperContent>          
-            <Menu />                    
+            <Menu /> 
+            <S.WrapperContentDivider>
+                <img src={imgCinema} alt={'Logo'}/> 
+              
             <S.WrapperForm onSubmit={formik.handleSubmit}>
                 <h1>Login</h1>
                 <S.WrapperFieldset>
@@ -108,7 +112,7 @@ const Login = () =>{
                     text={'Entrar'}             
                 />     
             </S.WrapperForm>    
-
+            </S.WrapperContentDivider>   
                               
         </S.WrapperContent>
     );

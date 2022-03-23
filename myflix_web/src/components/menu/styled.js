@@ -59,7 +59,7 @@ export const WrapperOption = styled.a`
     @media(max-width: 350px) {
         font-size: 18px;
         h1 {
-            font-size: 8px;
+            font-size: 12px;
         }
     } 
 `
@@ -84,7 +84,7 @@ export const WrapperTitle = styled.h1`
     }
     
     @media(max-width: 350px) {
-        font-size: 17px;
+        font-size: 20px;
     } 
 `;
 

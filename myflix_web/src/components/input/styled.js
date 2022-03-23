@@ -9,6 +9,14 @@ export const WrapperField= styled.div`
     margin-bottom: 8px;
     font-weight: bold;
     color: #d1b4b4;
+
+    @media(max-width: 800px) {
+        margin-top: 12px;
+    }
+
+    @media(max-width: 600px) {
+        margin-top: 8px;
+    }
 `;
 
 export const WrapperInput = styled.input`
@@ -19,4 +27,12 @@ export const WrapperInput = styled.input`
     padding: 16px 24px;
     font-size: 16px;
     color: #080000;
+
+    @media(max-width: 800px) {
+        padding: 12px 20px;
+    }
+
+    @media(max-width: 600px) {
+        padding: 6px 14px;
+    }
 `
